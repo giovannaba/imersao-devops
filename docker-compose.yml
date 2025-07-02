@@ -1,0 +1,16 @@
+services:
+  app:
+    # Constrói a imagem a partir do Dockerfile no diretório atual ('.')
+    build: .
+    container_name: api-imersao-alura-devops #nome do container
+    # Mapeia a porta 8000 do seu computador para a porta 8000 do contêiner
+    ports:
+      - "8000:8000"
+    # Monta o diretório atual do projeto no diretório /app do contêiner.
+    # Isso é essencial para que o "--reload" do uvicorn funcione,
+    # refletindo as alterações do seu código local instantaneamente no contêiner.
+    volumes:
+      - .:/app
+    # O comando para iniciar a aplicação já está definido no CMD do seu Dockerfile,
+    # então não é estritamente necessário repeti-lo aqui, mas é uma boa prática para clareza.
+    # command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
